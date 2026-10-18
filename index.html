@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuiz Latihan IQ dan Pengetahuan Am - Ujian PKSK</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        pksk: {
+                            blue: '#1e3a8a',
+                            indigo: '#3730a3',
+                            sky: '#0284c7',
+                            accent: '#f59e0b',
+                            bg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            user-select: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Header Bar -->
+    <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-amber-400 text-blue-950 p-2 rounded-lg font-black text-xl tracking-wider shadow">
+                    PKSK
+                </div>
+                <div>
+                    <h1 class="font-bold text-base md:text-lg leading-tight">Ujian Latihan PKSK</h1>
+                    <p class="text-xs text-blue-200 hidden sm:block">Sistem Pentaksiran Kemasukan Sekolah Khusus</p>
+                </div>
+            </div>
+            <div id="quiz-header-status" class="hidden flex items-center gap-3">
+                <div class="text-right">
+                    <span id="current-section-badge" class="px-2.5 py-1 bg-amber-500/20 text-amber-300 text-xs font-semibold rounded-full border border-amber-400/30">
+                        BAHAGIAN IQ
+                    </span>
+                </div>
+                <button onclick="confirmExit()" class="text-xs bg-red-600/80 hover:bg-red-600 text-white px-3 py-1.5 rounded-md transition flex items-center gap-1">
+                    <i class="fas fa-sign-out-alt"></i> <span class="hidden sm:inline">Tamat Ujian</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto w-full p-4 flex-grow flex items-center justify-center">
+
+        <!-- ================= PAGE 1: START / HOME SCREEN ================= -->
+        <section id="page-welcome" class="w-full max-w-3xl glass-card rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-10 text-center my-6">
+            <div class="inline-flex p-4 bg-blue-50 text-blue-800 rounded-full mb-4 ring-8 ring-blue-50/50">
+                <i class="fas fa-graduation-cap text-4xl"></i>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-2 uppercase tracking-tight">
+                KUIZ LATIHAN IQ DAN PENGETAHUAN AM
+            </h2>
+            <p class="text-sm sm:text-base text-slate-600 mb-6 max-w-xl mx-auto">
+                Modul simulasi persediaan Ujian Pentaksiran Kemasukan Sekolah Khusus (PKSK). Uji keupayaan kognitif, logik serta pengetahuan am anda.
+            </p>
+
+            <!-- Format Info Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-8">
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-start space-x-3">
+                    <div class="bg-indigo-100 text-indigo-700 p-2.5 rounded-lg text-lg">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">BAHAGIAN IQ & LOGIK</h3>
+                        <p class="text-xs text-slate-500">50 Soalan (Pola, Logik, Matematik, Ruang)</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl flex items-start space-x-3">
+                    <div class="bg-emerald-100 text-emerald-700 p-2.5 rounded-lg text-lg">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">BAHAGIAN PENGETAHUAN AM</h3>
+                        <p class="text-xs text-slate-500">50 Soalan (Isu Semasa, Sains, Agensi, Am)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 text-amber-800 p-4 rounded-xl text-xs sm:text-sm text-left mb-8 flex items-start space-x-3">
+                <i class="fas fa-circle-info text-amber-600 text-base mt-0.5"></i>
+                <div>
+                    <span class="font-semibold">Panduan Ujian:</span> Anda boleh menukar jawapan dan berpindah antara soalan pada bila-bila masa sebelum menghantar ujian. Semakan automatik dan keputusan lengkap akan dipaparkan di akhir ujian.
+                </div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-800 hover:to-indigo-800 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-indigo-500/25 transition transform active:scale-95 flex items-center justify-center space-x-2 mx-auto">
+                <span>MULA SEKARANG</span>
+                <i class="fas fa-play text-sm"></i>
+            </button>
+        </section>
+
+
+        <!-- ================= PAGE 2: QUIZ QUESTION SCREEN ================= -->
+        <section id="page-quiz" class="w-full hidden my-4">
+            
+            <!-- Category Switcher Tabs & Progress -->
+            <div class="mb-4 bg-white p-3 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-3">
+                <!-- Section Tabs -->
+                <div class="flex bg-slate-100 p-1 rounded-lg w-full md:w-auto">
+                    <button id="tab-iq" onclick="switchCategory('iq')" class="flex-1 md:flex-initial px-4 py-2 rounded-md font-semibold text-xs sm:text-sm transition flex items-center justify-center space-x-2 bg-blue-900 text-white shadow">
+                        <i class="fas fa-brain"></i>
+                        <span>BAHAGIAN IQ (1-50)</span>
+                    </button>
+                    <button id="tab-pa" onclick="switchCategory('pa')" class="flex-1 md:flex-initial px-4 py-2 rounded-md font-semibold text-xs sm:text-sm transition flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900">
+                        <i class="fas fa-globe"></i>
+                        <span>BAHAGIAN PENGETAHUAN AM (1-50)</span>
+                    </button>
+                </div>
+
+                <!-- Global Progress Bar -->
+                <div class="w-full md:w-64 flex items-center space-x-3">
+                    <div class="flex-1 bg-slate-200 rounded-full h-2.5 overflow-hidden">
+                        <div id="progress-bar-fill" class="bg-emerald-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <span id="progress-text" class="text-xs font-bold text-slate-600 whitespace-nowrap">0 / 100</span>
+                </div>
+            </div>
+
+            <!-- Main Question & Navigation Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                
+                <!-- Question Box (3 Columns on Large Screens) -->
+                <div class="lg:col-span-3 glass-card rounded-2xl shadow-xl border border-slate-200 p-5 sm:p-8 flex flex-col justify-between min-h-[480px]">
+                    <div>
+                        <!-- Section Badge & Question Number -->
+                        <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-100">
+                            <span id="question-category-label" class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md border border-indigo-100">
+                                BAHAGIAN IQ
+                            </span>
+                            <span class="text-sm font-bold text-slate-400">
+                                Soalan <span id="current-q-num" class="text-slate-800 text-base">1</span> / 100
+                            </span>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div class="mb-6">
+                            <h3 id="question-text" class="text-base sm:text-lg font-semibold text-slate-800 leading-relaxed">
+                                Loading soalan...
+                            </h3>
+                        </div>
+
+                        <!-- Options List -->
+                        <div id="options-container" class="space-y-3 mb-6">
+                            <!-- Dynamic Options Rendered Here -->
+                        </div>
+                    </div>
+
+                    <!-- Instant Feedback Message (Optional preview/learning mode) -->
+                    <div id="instant-feedback" class="hidden mb-4 p-4 rounded-xl text-xs sm:text-sm transition-all border"></div>
+
+                    <!-- Bottom Nav Controls -->
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                        <button id="btn-prev" onclick="prevQuestion()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition flex items-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Sebelumnya</span>
+                        </button>
+
+                        <button id="btn-next" onclick="nextQuestion()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-sm transition flex items-center space-x-2 shadow-md">
+                            <span>Seterusnya</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Navigation Grid Drawer / Panel (1 Column) -->
+                <div class="lg:col-span-1 glass-card rounded-2xl shadow-xl border border-slate-200 p-5 flex flex-col h-full max-h-[550px]">
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+                        <h4 class="font-bold text-slate-800 text-sm flex items-center space-x-1.5">
+                            <i class="fas fa-th text-indigo-600"></i>
+                            <span>Navigasi Soalan</span>
+                        </h4>
+                        <span class="text-xs text-slate-500" id="nav-section-title">IQ (1-50)</span>
+                    </div>
+
+                    <!-- Numbers Grid -->
+                    <div id="questions-grid" class="grid grid-cols-5 gap-2 overflow-y-auto custom-scrollbar p-1 flex-grow mb-4">
+                        <!-- Dynamic Grid Buttons -->
+                    </div>
+
+                    <!-- Grid Legend -->
+                    <div class="text-[11px] text-slate-500 pt-3 border-t border-slate-100 space-y-1">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                            <span>Telah Dijawab</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-slate-200 border border-slate-300 inline-block"></span>
+                            <span>Belum Dijawab</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-indigo-600 inline-block"></span>
+                            <span>Soalan Semasa</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button onclick="confirmSubmitQuiz()" class="mt-4 w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center space-x-2">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Hantar Jawapan</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= PAGE 3: RESULT SCREEN ================= -->
+        <section id="page-result" class="w-full max-w-4xl glass-card rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-10 hidden my-6">
+            
+            <div class="text-center mb-8">
+                <div class="inline-flex p-4 bg-indigo-50 text-indigo-700 rounded-full mb-3 ring-8 ring-indigo-50/50">
+                    <i class="fas fa-award text-4xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">KEPUTUSAN UJIAN PKSK</h2>
+                <p class="text-sm text-slate-500 mt-1">Laporan Prestasi & Analisis Jawapan</p>
+            </div>
+
+            <!-- Score Cards Overview -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <!-- Total Score -->
+                <div class="bg-gradient-to-br from-indigo-900 to-blue-900 text-white p-5 rounded-2xl shadow text-center flex flex-col justify-center">
+                    <span class="text-xs font-semibold text-indigo-200 uppercase tracking-wider">SKOR KESELURUHAN</span>
+                    <div class="text-4xl font-black my-2" id="res-score-total">0 / 100</div>
+                    <span id="res-percentage" class="text-xs bg-amber-400 text-blue-950 font-bold px-3 py-1 rounded-full mx-auto">0%</span>
+                </div>
+
+                <!-- Section IQ Score -->
+                <div class="bg-white border border-slate-200 p-5 rounded-2xl text-center shadow-sm flex flex-col justify-center">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">BAHAGIAN IQ & LOGIK</span>
+                    <div class="text-2xl font-black text-indigo-600 my-1" id="res-score-iq">0 / 50</div>
+                    <span class="text-xs text-slate-500" id="res-percent-iq">0% markah</span>
+                </div>
+
+                <!-- Section PA Score -->
+                <div class="bg-white border border-slate-200 p-5 rounded-2xl text-center shadow-sm flex flex-col justify-center">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">PENGETAHUAN AM</span>
+                    <div class="text-2xl font-black text-emerald-600 my-1" id="res-score-pa">0 / 50</div>
+                    <span class="text-xs text-slate-500" id="res-percent-pa">0% markah</span>
+                </div>
+            </div>
+
+            <!-- Status Evaluation Card -->
+            <div id="eval-card" class="p-4 rounded-xl border mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 bg-blue-50 border-blue-200">
+                <div id="eval-icon" class="text-3xl text-blue-600">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <div>
+                    <h4 id="eval-title" class="font-bold text-slate-800 text-base">Tahap Prestasi: Cemerlang</h4>
+                    <p id="eval-desc" class="text-xs sm:text-sm text-slate-600">Syabas! Anda menunjukkan penguasaan kognitif dan pengetahuan am yang amat tinggi.</p>
+                </div>
+            </div>
+
+            <!-- Review Answers Accordion/List Section -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-slate-800 text-lg flex items-center space-x-2">
+                        <i class="fas fa-list-check text-indigo-600"></i>
+                        <span>Semakan & Jawapan Lengkap</span>
+                    </h3>
+                    <div class="flex space-x-2">
+                        <button onclick="filterReview('all')" id="filter-all" class="px-3 py-1 bg-slate-800 text-white text-xs font-bold rounded-lg">Semua</button>
+                        <button onclick="filterReview('wrong')" id="filter-wrong" class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-200">Salah sahaja</button>
+                    </div>
+                </div>
+
+                <!-- Review Items Container -->
+                <div id="review-container" class="space-y-4 max-h-[450px] overflow-y-auto custom-scrollbar pr-2">
+                    <!-- Dynamic Answer Review Cards -->
+                </div>
+            </div>
+
+            <!-- Restart Button -->
+            <div class="text-center pt-4 border-t border-slate-100">
+                <button onclick="restartQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-blue-700 to-indigo-700 text-white font-bold rounded-xl shadow-lg hover:opacity-95 transition flex items-center justify-center space-x-2 mx-auto">
+                    <i class="fas fa-rotate-right"></i>
+                    <span>CUBA UJIAN LAGI</span>
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 text-center border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>Modul Kuiz Latihan PKSK • Hak Cipta Bahan Pembelajaran Dipelihara</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Raw data with correct answers and detailed explanations (huraian)
+        const questionsData = [
+            // ================= 50 SOALAN IQ & LOGIK =================
+            {
+                id: 1,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "1. Apakah nombor seterusnya dalam jujukan berikut?\n3, 7, 15, 31, 63, ...",
+                options: ["A) 125", "B) 126", "C) 127", "D) 129"],
+                correct: 2,
+                huraian: "Pola nombor ini ganda dua tambah 1: (3×2)+1 = 7, (7×2)+1 = 15, (15×2)+1 = 31, (31×2)+1 = 63. Maka, (63×2)+1 = 127."
+            },
+            {
+                id: 2,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "2. Apakah nombor seterusnya?\n2, 6, 12, 20, 30, ...",
+                options: ["A) 36", "B) 40", "C) 42", "D) 44"],
+                correct: 2,
+                huraian: "Beza antara nombor bertambah secara berturutan: +4, +6, +8, +10. Penambahan seterusnya ialah +12 (30 + 12 = 42). Juga boleh dikira sebagai n × (n+1): 1×2=2, 2×3=6, 3×4=12, 4×5=20, 5×6=30, 6×7=42."
+            },
+            {
+                id: 3,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "3. Pilih nombor yang tidak mengikut pola.\n8, 16, 24, 32, 41, 48",
+                options: ["A) 16", "B) 24", "C) 41", "D) 48"],
+                correct: 2,
+                huraian: "Jujukan ini ialah gandaan 8 (8, 16, 24, 32, 40, 48). Nombor 41 tersalah kerana sepatutnya 40."
+            },
+            {
+                id: 4,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "4. Semua RIM ialah KAF. Semua KAF ialah LOM. Kesimpulan manakah yang pasti benar?",
+                options: ["A) Semua LOM ialah RIM", "B) Semua RIM ialah LOM", "C) Tiada RIM ialah LOM", "D) Semua KAF bukan RIM"],
+                correct: 1,
+                huraian: "Melalui silogisme logik: Kumpulan RIM berada di dalam KAF, dan kumpulan KAF berada di dalam LOM. Oleh itu, keseluruhan RIM sudah pasti berada di dalam LOM."
+            },
+            {
+                id: 5,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "5. Aina lebih tinggi daripada Bala. Bala lebih tinggi daripada Chong. Siapakah yang paling rendah?",
+                options: ["A) Aina", "B) Bala", "C) Chong", "D) Tidak dapat ditentukan"],
+                correct: 2,
+                huraian: "Susunan ketinggian dari tertinggi ke terendah: Aina > Bala > Chong. Maka, Chong adalah yang paling rendah."
+            },
+            {
+                id: 6,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "6. Lima mesin menghasilkan lima kotak dalam masa lima minit. Jika semua mesin berfungsi pada kadar yang sama, berapa minit diperlukan oleh 10 mesin untuk menghasilkan 10 kotak?",
+                options: ["A) 2.5 minit", "B) 5 minit", "C) 10 minit", "D) 20 minit"],
+                correct: 1,
+                huraian: "Setiap 1 mesin mengambil masa 5 minit untuk menghasilkan 1 kotak. Jadi 10 mesin yang beroperasi serentak selama 5 minit akan menghasilkan 10 kotak."
+            },
+            {
+                id: 7,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "7. Apakah nombor seterusnya?\n1, 4, 9, 16, 25, ...",
+                options: ["A) 30", "B) 35", "C) 36", "D) 49"],
+                correct: 2,
+                huraian: "Ini ialah jujukan kuasa dua sempurna: 1², 2², 3², 4², 5², dan seterusnya ialah 6² = 36."
+            },
+            {
+                id: 8,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "8. Dalam suatu kod, setiap huruf digantikan dengan huruf selepasnya dalam abjad. Jika CAT menjadi DBU, bagaimanakah MEJA ditulis?",
+                options: ["A) NFKB", "B) NFKZ", "C) LDKZ", "D) NGKB"],
+                correct: 0,
+                huraian: "Anjakkan setiap huruf +1 ke hadapan: M→N, E→F, J→K, A→B. Keputusannya ialah NFKB."
+            },
+            {
+                id: 9,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "9. Jam menunjukkan pukul 3:00. Berapakah sudut terkecil antara jarum jam dengan jarum minit?",
+                options: ["A) 45°", "B) 60°", "C) 90°", "D) 180°"],
+                correct: 2,
+                huraian: "Pada pukul 3:00, jarum minit di angka 12 dan jarum jam di angka 3. Jaraknya ialah 3 senggatan nombor. Setiap nombor bernilai 30° (360°/12 = 30°), jadi 3 × 30° = 90° (sudut tegak)."
+            },
+            {
+                id: 10,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "10. Jika hari ini hari Selasa, apakah hari 100 hari kemudian?",
+                options: ["A) Rabu", "B) Khamis", "C) Jumaat", "D) Sabtu"],
+                correct: 1,
+                huraian: "Satu minggu ada 7 hari. Bahagikan 100 dengan 7: 100 ÷ 7 = 14 minggu baki 2 hari. 2 hari selepas Selasa ialah Khamis."
+            },
+            {
+                id: 11,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "11. Sebuah buku dan sebatang pen berharga RM14. Harga buku RM10 lebih mahal daripada harga pen. Berapakah harga pen?",
+                options: ["A) RM2", "B) RM3", "C) RM4", "D) RM5"],
+                correct: 0,
+                huraian: "Katakan pen = x. Buku = x + RM10. Jumlah: x + (x + 10) = 14 ➔ 2x + 10 = 14 ➔ 2x = 4 ➔ x = RM2."
+            },
+            {
+                id: 12,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "12. Apakah nombor yang hilang?\n3, 8, 15, 24, __, 48",
+                options: ["A) 30", "B) 32", "C) 35", "D) 36"],
+                correct: 2,
+                huraian: "Penambahan bertambah sebanyak +2 setiap langkah: +5, +7, +9, +11, +13. Jadi 24 + 11 = 35. (Juga formula n² - 1: 2²-1=3, 3²-1=8, 4²-1=15, 5²-1=24, 6²-1=35, 7²-1=48)."
+            },
+            {
+                id: 13,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "13. Pilih pasangan yang mempunyai hubungan yang sama.\nBurung : Sarang :: Lebah : ...",
+                options: ["A) Gua", "B) Reban", "C) Sarang lebah", "D) Bendang"],
+                correct: 2,
+                huraian: "Hubungan 'tempat tinggal/kediaman haiwan'. Burung tinggal di sarang, lebah membuat dan tinggal di sarang lebah."
+            },
+            {
+                id: 14,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "14. Semua bunga di dalam pasu A berwarna merah. Mawar berada di dalam pasu A. Apakah kesimpulan yang tepat?",
+                options: ["A) Mawar berwarna merah", "B) Semua bunga merah ialah mawar", "C) Mawar bukan bunga", "D) Pasu A kosong"],
+                correct: 0,
+                huraian: "Memandangkan mawar berada di pasu A dan SEMUA bunga dalam pasu A merah, maka mawar tersebut pasti berwarna merah."
+            },
+            {
+                id: 15,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "15. Suatu nombor apabila didarab dengan 4 dan kemudian ditambah 6 menghasilkan 34. Apakah nombor tersebut?",
+                options: ["A) 5", "B) 6", "C) 7", "D) 8"],
+                correct: 2,
+                huraian: "Kira secara terbalik: (34 - 6) ÷ 4 = 28 ÷ 4 = 7."
+            },
+            {
+                id: 16,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "16. Apakah huruf seterusnya dalam pola berikut?\nA, C, F, J, O, ...",
+                options: ["A) S", "B) T", "C) U", "D) V"],
+                correct: 2,
+                huraian: "Selang kedudukan abjad bertambah: A (+2) C (+3) F (+4) J (+5) O (+6) U. Huruf ke-21 ialah U."
+            },
+            {
+                id: 17,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "17. Empat orang berjabat tangan sekali dengan setiap orang lain. Berapakah jumlah jabat tangan yang berlaku?",
+                options: ["A) 4", "B) 5", "C) 6", "D) 8"],
+                correct: 2,
+                huraian: "Gunakan formula gabungan n(n-1)/2: 4 × (4-1) / 2 = 12 / 2 = 6 kali jabat tangan."
+            },
+            {
+                id: 18,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "18. Jika 2 → 6, 3 → 12 dan 4 → 20, maka 5 → ...",
+                options: ["A) 25", "B) 30", "C) 35", "D) 40"],
+                correct: 1,
+                huraian: "Formula operasinya ialah n × (n + 1): 2×3=6, 3×4=12, 4×5=20. Maka bagi 5: 5×6 = 30."
+            },
+            {
+                id: 19,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "19. Ali berada di hadapan Siti. Siti berada di hadapan Kumar. Siapakah yang berada di tengah-tengah antara mereka bertiga?",
+                options: ["A) Ali", "B) Siti", "C) Kumar", "D) Tidak dapat ditentukan"],
+                correct: 1,
+                huraian: "Susunan dari hadapan ke belakang: Ali -> Siti -> Kumar. Jadi Siti berada tepat di tengah-tengah."
+            },
+            {
+                id: 20,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "20. Sebuah segi empat tepat mempunyai panjang 9 cm dan lebar 4 cm. Berapakah perimeter bentuk itu?",
+                options: ["A) 13 cm", "B) 26 cm", "C) 36 cm", "D) 18 cm"],
+                correct: 1,
+                huraian: "Perimeter = 2 × (Panjang + Lebar) = 2 × (9 cm + 4 cm) = 2 × 13 cm = 26 cm."
+            },
+            {
+                id: 21,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "21. Pilih nombor yang berbeza daripada yang lain.",
+                options: ["A) 27", "B) 64", "C) 125", "D) 144"],
+                correct: 3,
+                huraian: "27 (3³), 64 (4³), dan 125 (5³) adalah nombor kuasa tiga sempurna (cube numbers), manakala 144 ialah nombor kuasa dua sempurna (12²)."
+            },
+            {
+                id: 22,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "22. Jika CAT menjadi DBU dengan menggantikan setiap huruf kepada huruf selepasnya, apakah kod bagi DOG?",
+                options: ["A) EPH", "B) EOG", "C) CNG", "D) FPH"],
+                correct: 0,
+                huraian: "Gantikan setiap huruf dengan huruf seterusnya dalam abjad (+1): D➔E, O➔P, G➔H. Keputusannya EPH."
+            },
+            {
+                id: 23,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "23. Sebuah bas bertolak pada pukul 8:35 pagi dan tiba pada pukul 10:05 pagi. Berapakah tempoh perjalanan?",
+                options: ["A) 1 jam 20 minit", "B) 1 jam 30 minit", "C) 1 jam 40 minit", "D) 2 jam"],
+                correct: 1,
+                huraian: "Dari 8:35 pagi ke 9:35 pagi = 1 jam. Dari 9:35 pagi ke 10:05 pagi = 30 minit. Tempoh keseluruhan = 1 jam 30 minit."
+            },
+            {
+                id: 24,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "24. Antara pecahan berikut, yang manakah paling besar?",
+                options: ["A) 3/5", "B) 5/8", "C) 2/3", "D) 7/12"],
+                correct: 2,
+                huraian: "Tukarkan kepada perpuluhan: 3/5 = 0.60, 5/8 = 0.625, 2/3 = 0.667, 7/12 = 0.583. Oleh itu, 2/3 adalah pecahan paling besar."
+            },
+            {
+                id: 25,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "25. Farah ialah orang ketujuh dari hadapan dan orang kesembilan dari belakang dalam satu barisan. Berapakah jumlah orang dalam barisan itu?",
+                options: ["A) 14", "B) 15", "C) 16", "D) 17"],
+                correct: 1,
+                huraian: "Gunakan formula: (Kedudukan Depan + Kedudukan Belakang) - 1. (7 + 9) - 1 = 16 - 1 = 15 orang."
+            },
+            {
+                id: 26,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "26. Semua ZET ialah PON. Tiada PON ialah LAR. Kesimpulan manakah yang betul?",
+                options: ["A) Semua ZET ialah LAR", "B) Tiada ZET ialah LAR", "C) Semua LAR ialah ZET", "D) Semua ZET ialah PON dan LAR"],
+                correct: 1,
+                huraian: "Disebabkan semua ZET merupakan sebahagian daripada PON, dan tiada satu pun PON yang merupakan LAR, maka pasti tiada ZET yang merupakan LAR."
+            },
+            {
+                id: 27,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "27. Satu corak berulang ialah bulat, segi tiga, segi empat, bulat, segi tiga, segi empat dan seterusnya. Apakah bentuk pada kedudukan kelapan?",
+                options: ["A) Bulat", "B) Segi tiga", "C) Segi empat", "D) Bintang"],
+                correct: 1,
+                huraian: "Corak berulang setiap 3 bentuk (1: Bulat, 2: Segi tiga, 3: Segi empat). Bahagikan kedudukan 8 dengan 3: 8 ÷ 3 = 2 baki 2. Baki 2 menunjukkan bentuk ke-2 dalam kitaran iaitu Segi Tiga."
+            },
+            {
+                id: 28,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "28. Tiga pemadam berharga RM4.50. Berapakah harga lapan pemadam pada kadar yang sama?",
+                options: ["A) RM9.00", "B) RM10.50", "C) RM12.00", "D) RM13.50"],
+                correct: 2,
+                huraian: "Harga 1 pemadam = RM4.50 ÷ 3 = RM1.50. Maka harga 8 pemadam = 8 × RM1.50 = RM12.00."
+            },
+            {
+                id: 29,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "29. Apakah nombor seterusnya?\n81, 27, 9, 3, ...",
+                options: ["A) 0", "B) 1", "C) 2", "D) 6"],
+                correct: 1,
+                huraian: "Pola jujukan ini ialah dibahagi 3 bagi setiap langkah berturut-turut. 3 ÷ 3 = 1."
+            },
+            {
+                id: 30,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "30. Jika semalam ialah hari Ahad, apakah hari lusa?",
+                options: ["A) Isnin", "B) Selasa", "C) Rabu", "D) Khamis"],
+                correct: 2,
+                huraian: "Jika semalam hari Ahad, maka hari ini ialah Isnin. Lusa bermaksud 2 hari selepas hari ini (Selasa ➔ Rabu)."
+            },
+            {
+                id: 31,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "31. Mei mendahului Ina tetapi berada di belakang Jo dalam pertandingan. Siapakah yang menduduki tempat pertama antara mereka bertiga?",
+                options: ["A) Mei", "B) Ina", "C) Jo", "D) Tidak dapat diketahui"],
+                correct: 2,
+                huraian: "Susunan kedudukan dari depan/pertama: Jo ➔ Mei ➔ Ina. Oleh itu, Jo berada di tempat pertama."
+            },
+            {
+                id: 32,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "32. Sebuah kotak mengandungi 3 bola merah, 2 bola biru dan 5 bola hijau. Apakah kebarangkalian memilih bola biru secara rawak?",
+                options: ["A) 1/5", "B) 1/4", "C) 1/3", "D) 2/5"],
+                correct: 0,
+                huraian: "Jumlah bola = 3 + 2 + 5 = 10 bola. Kebarangkalian bola biru = 2 / 10 = 1/5."
+            },
+            {
+                id: 33,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "33. Berapakah 15% daripada 200?",
+                options: ["A) 15", "B) 20", "C) 30", "D) 35"],
+                correct: 2,
+                huraian: "Pengiraan: (15 / 100) × 200 = 15 × 2 = 30."
+            },
+            {
+                id: 34,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "34. Pilih unit yang tidak sekelompok dengan yang lain.",
+                options: ["A) Meter", "B) Sentimeter", "C) Kilometer", "D) Kilogram"],
+                correct: 3,
+                huraian: "Meter, sentimeter, dan kilometer ialah unit ukuran panjang/jarak, manakala kilogram ialah unit ukuran jisim/berat."
+            },
+            {
+                id: 35,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "35. Tujuh orang berkongsi 56 gula-gula sama rata. Berapakah gula-gula yang diterima setiap orang?",
+                options: ["A) 6", "B) 7", "C) 8", "D) 9"],
+                correct: 2,
+                huraian: "Pengiraan pembahagian: 56 ÷ 7 = 8 gula-gula setiap seorang."
+            },
+            {
+                id: 36,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "36. Apakah nombor seterusnya?\n10, 13, 19, 28, 40, ...",
+                options: ["A) 50", "B) 52", "C) 55", "D) 58"],
+                correct: 2,
+                huraian: "Pola penambahan gandaan 3: +3, +6, +9, +12. Penambahan seterusnya ialah +15 (40 + 15 = 55)."
+            },
+            {
+                id: 37,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "37. Sebuah segi empat sama diputar sebanyak 180°. Jika tiada tanda arah pada bentuk itu, apakah yang berlaku?",
+                options: ["A) Bentuknya kelihatan sama seperti asal", "B) Bentuknya menjadi bulatan", "C) Bentuknya menjadi segi tiga", "D) Bentuknya menjadi segi lima"],
+                correct: 0,
+                huraian: "Segi empat sama mempunyai simetri putaran peringkat 4 (90°, 180°, 270°, 360°), maka putaran 180° mengekalkan rupa bentuk asalnya."
+            },
+            {
+                id: 38,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "38. Jika P lebih besar daripada Q dan Q sama dengan R, maka ...",
+                options: ["A) P lebih kecil daripada R", "B) P sama dengan R", "C) P lebih besar daripada R", "D) R lebih besar daripada P"],
+                correct: 2,
+                huraian: "Oleh kerana Q = R, nilai R boleh digantikan terus ke dalam hubungan P > Q, menjadikannya P > R."
+            },
+            {
+                id: 39,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "39. Suatu nombor genap antara 20 dengan 30 boleh dibahagi tepat dengan 3. Apakah nombor itu?",
+                options: ["A) 22", "B) 24", "C) 26", "D) 28"],
+                correct: 1,
+                huraian: "Nombor genap antara 20 dan 30 ialah 22, 24, 26, 28. Antaranya, hanya 24 yang boleh dibahagi tepat dengan 3 (24 ÷ 3 = 8)."
+            },
+            {
+                id: 40,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "40. Empat pekerja menyiapkan suatu tugas dalam 12 hari. Jika kadar kerja setiap pekerja sama, berapa hari diperlukan oleh lapan pekerja untuk menyiapkan tugas yang sama?",
+                options: ["A) 3 hari", "B) 6 hari", "C) 12 hari", "D) 24 hari"],
+                correct: 1,
+                huraian: "Ini konsep berkadar songsang. Jumlah man-days = 4 × 12 = 48 hari-pekerja. Jika 8 pekerja: 48 ÷ 8 = 6 hari."
+            },
+            {
+                id: 41,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "41. Apakah nombor seterusnya?\n2, 5, 11, 23, 47, ...",
+                options: ["A) 89", "B) 93", "C) 95", "D) 97"],
+                correct: 2,
+                huraian: "Pola pendaraban: (n × 2) + 1. (2×2)+1=5, (5×2)+1=11, (11×2)+1=23, (23×2)+1=47. Maka seterusnya: (47×2)+1 = 95."
+            },
+            {
+                id: 42,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "42. Tiga kotak P, Q dan R mempunyai berat yang berbeza. Kotak P lebih berat daripada Q, manakala kotak Q lebih berat daripada R. Kotak manakah yang paling ringan?",
+                options: ["A) P", "B) Q", "C) R", "D) Tidak dapat ditentukan"],
+                correct: 2,
+                huraian: "Susunan berat dari terberat ke teringan: P > Q > R. Kotak R adalah yang paling ringan."
+            },
+            {
+                id: 43,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "43. Pada pukul 2:30, berapakah sudut terkecil antara jarum jam dengan jarum minit?",
+                options: ["A) 105°", "B) 90°", "C) 75°", "D) 120°"],
+                correct: 0,
+                huraian: "Jarum minit di angka 6 (180°). Jarum jam berada separuh jalan antara angka 2 dan 3, iaitu 2.5 × 30° = 75°. Sudut perbezaan = 180° - 75° = 105°."
+            },
+            {
+                id: 44,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "44. Jika 1 Januari ialah hari Rabu dalam tahun biasa, apakah hari pada 8 Januari?",
+                options: ["A) Isnin", "B) Selasa", "C) Rabu", "D) Khamis"],
+                correct: 2,
+                huraian: "Setiap pertambahan 7 hari, hari yang sama akan berulang. 1 Jan + 7 hari = 8 Jan, maka hari tersebut kekal hari Rabu."
+            },
+            {
+                id: 45,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "45. Berapakah hasil 48 ÷ 6 × 2 jika pengiraan dilakukan dari kiri ke kanan?",
+                options: ["A) 4", "B) 8", "C) 16", "D) 24"],
+                correct: 2,
+                huraian: "Ikut tertib operasi kiri ke kanan (bahagi dan darab sama keutamaan): (48 ÷ 6) × 2 = 8 × 2 = 16."
+            },
+            {
+                id: 46,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "46. Tiga kotak mempunyai berat 2 kg, 3 kg dan 5 kg. Berapakah jumlah berat dua kotak yang paling ringan?",
+                options: ["A) 5 kg", "B) 7 kg", "C) 8 kg", "D) 10 kg"],
+                correct: 0,
+                huraian: "Dua kotak paling ringan ialah 2 kg dan 3 kg. Jumlah berat = 2 kg + 3 kg = 5 kg."
+            },
+            {
+                id: 47,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "47. Apakah nombor seterusnya?\n100, 95, 85, 70, 50, ...",
+                options: ["A) 20", "B) 25", "C) 30", "D) 35"],
+                correct: 1,
+                huraian: "Pola penolakan bertambah gandaan 5: -5, -10, -15, -20. Penolakan seterusnya ialah -25 (50 - 25 = 25)."
+            },
+            {
+                id: 48,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "48. Setiap huruf dalam perkataan KELAS digantikan dengan huruf sebelumnya dalam abjad. Apakah hasilnya?",
+                options: ["A) JDKZR", "B) LFMBS", "C) JDLZR", "D) JDKAS"],
+                correct: 0,
+                huraian: "Gantikan setiap huruf -1 ke belakang: K➔J, E➔D, L➔K, A➔Z, S➔R. Hasilnya JDKZR."
+            },
+            {
+                id: 49,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "49. Sebuah pasukan memenangi 6 daripada 10 perlawanan. Jika kadar kemenangan yang sama dikekalkan, berapa kemenangan dijangka daripada 25 perlawanan?",
+                options: ["A) 12", "B) 15", "C) 18", "D) 20"],
+                correct: 1,
+                huraian: "Kadar kemenangan = 6/10 = 0.6 (60%). Dijangka menang daripada 25 perlawanan = 0.6 × 25 = 15 perlawanan."
+            },
+            {
+                id: 50,
+                section: 'iq',
+                sectionName: 'BAHAGIAN IQ',
+                q: "50. Semua mamalia bernafas. Paus ialah mamalia. Apakah kesimpulan yang sah?",
+                options: ["A) Paus tidak bernafas", "B) Paus bernafas", "C) Semua haiwan yang bernafas ialah paus", "D) Paus bukan mamalia"],
+                correct: 1,
+                huraian: "Berdasarkan premis yang diberikan: Kerana semua mamalia bernafas dan paus tergolong dalam mamalia, maka paus pasti bernafas."
+            },
+
+            // ================= 50 SOALAN PENGETAHUAN AM =================
+            {
+                id: 51,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "51. Apakah fungsi utama Jabatan Perangkaan Malaysia (DOSM)?",
+                options: ["A) Mengeluarkan pasport", "B) Mengumpul, mentafsir dan menerbitkan statistik rasmi", "C) Mengendalikan pilihan raya", "D) Mengeluarkan wang kertas"],
+                correct: 1,
+                huraian: "Jabatan Perangkaan Malaysia (DOSM) bertanggungjawab mengumpul, mentafsir, dan mengeluarkan perangkaan/statistik rasmi negara seperti data banci, ekonomi, dan sosial."
+            },
+            {
+                id: 52,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "52. Apakah peranan utama Bank Negara Malaysia?",
+                options: ["A) Mengurus semua sekolah kerajaan", "B) Menentukan keputusan pilihan raya", "C) Menggalakkan kestabilan monetari dan kewangan", "D) Mengeluarkan lesen memandu"],
+                correct: 2,
+                huraian: "Bank Negara Malaysia (BNM) merupakan bank pusat yang mengawal selia dasar kewangan, mata wang, serta memastikan kestabilan sektor kewangan negara."
+            },
+            {
+                id: 53,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "53. Apakah fungsi utama MyIPO di Malaysia?",
+                options: ["A) Mengurus hal berkaitan harta intelek", "B) Mengurus pengangkutan awam", "C) Mengawal ramalan cuaca", "D) Mengurus peperiksaan sekolah"],
+                correct: 0,
+                huraian: "Perbadanan Harta Intelek Malaysia (MyIPO) mentadbir dan mengurus pendaftaran sistem harta intelek seperti paten, cap dagangan, hak cipta, dan reka bentuk perindustrian."
+            },
+            {
+                id: 54,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "54. Apakah tugas utama Agensi Pengurusan Bencana Negara (NADMA)?",
+                options: ["A) Mengurus perdagangan antarabangsa", "B) Menentukan kadar faedah bank", "C) Menyelaras pengurusan bencana negara", "D) Mengurus pendaftaran universiti"],
+                correct: 2,
+                huraian: "NADMA bertindak sebagai agensi peneraju dalam penyelarasan pengurusan bencana negara, persediaan kesiapsiagaan, serta bantuan bencana alam."
+            },
+            {
+                id: 55,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "55. Apakah tujuan utama Jabatan Audit Negara?",
+                options: ["A) Mengeluarkan sijil kelahiran", "B) Mengaudit akaun dan pengurusan kewangan sektor awam mengikut bidang kuasanya", "C) Menentukan keputusan sukan", "D) Mengurus pengangkutan udara"],
+                correct: 1,
+                huraian: "Jabatan Audit Negara yang diketuai Ketua Audit Negara bertanggungjawab mengaudit akaun-akaun awam Kerajaan Persekutuan/Negeri dan badan awam bagi memastikan ketelusan kewangan."
+            },
+            {
+                id: 56,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "56. Apakah peranan Suruhanjaya Pilihan Raya (SPR)?",
+                options: ["A) Mengeluarkan mata wang", "B) Mengawal keselamatan makanan", "C) Mengendalikan pilihan raya dalam bidang kuasanya", "D) Mengurus pemuliharaan hutan sahaja"],
+                correct: 2,
+                huraian: "SPR ialah badan bebas yang diamanahkan untuk mengendalikan Pilihan Raya Umum (PRU) dan Pilihan Raya Kecil (PRK) serta mengemaskini daftar pemilih di Malaysia."
+            },
+            {
+                id: 57,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "57. Apakah fungsi utama Jabatan Pengangkutan Jalan (JPJ)?",
+                options: ["A) Mengurus hal berkaitan pengangkutan jalan dan pelesenan yang berkenaan", "B) Mengurus ramalan cuaca", "C) Menentukan kadar pertukaran mata wang", "D) Mengendalikan pilihan raya"],
+                correct: 0,
+                huraian: "JPJ bertanggungjawab menguatkuasakan undang-undang lalu lintas jalan raya, mendaftarkan kenderaan, dan mengeluarkan lesen memandu di Malaysia."
+            },
+            {
+                id: 58,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "58. Apakah fungsi SIRIM dalam bidang standard dan kualiti?",
+                options: ["A) Mengurus bantuan kewangan murid", "B) Menyokong pembangunan standard, pengujian dan pensijilan", "C) Mengeluarkan pasport", "D) Mengurus semua taman negara"],
+                correct: 1,
+                huraian: "SIRIM berfungsi sebagai badan piawaian dan kualiti kebangsaan untuk pengujian produk, pensijilan kualiti, dan pembangunan teknologi di Malaysia."
+            },
+            {
+                id: 59,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "59. Apakah tujuan pendaftaran cap dagangan?",
+                options: ["A) Menjamin semua produk menjadi murah", "B) Melindungi tanda yang membezakan barangan atau perkhidmatan sesuatu perniagaan", "C) Mendaftarkan semua pekerja sesebuah syarikat", "D) Menentukan harga pasaran sesuatu produk"],
+                correct: 1,
+                huraian: "Cap dagangan (trademark) memberikan hak eksklusif undang-undang kepada pemilik untuk menggunakan jenama/logo tersebut dan menghalang orang lain daripada meniru."
+            },
+            {
+                id: 60,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "60. Apakah tujuan utama UNICEF?",
+                options: ["A) Mengawal penerbangan antarabangsa", "B) Mengurus perdagangan petroleum", "C) Memperjuangkan hak dan kesejahteraan kanak-kanak", "D) Menentukan kadar tukaran mata wang"],
+                correct: 2,
+                huraian: "UNICEF (United Nations Children's Fund) ialah agensi PBB yang memberi bantuan kemanusiaan dan perkembangan khas untuk hak dan perlindungan kanak-kanak sejagat."
+            },
+            {
+                id: 61,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "61. Organisasi Pertubuhan Bangsa-Bangsa Bersatu (PBB) yang memberi tumpuan kepada kesihatan awam global ialah ...",
+                options: ["A) WHO", "B) UNESCO", "C) WIPO", "D) ICAO"],
+                correct: 0,
+                huraian: "WHO (World Health Organization) bertanggungjawab menguruskan isu-isu kesihatan awam antarabangsa dan kawalan penyakit global."
+            },
+            {
+                id: 62,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "62. UNESCO paling rapat dikaitkan dengan kerjasama antarabangsa dalam bidang ...",
+                options: ["A) Pendidikan, sains dan budaya", "B) Pengeluaran wang kertas", "C) Penguatkuasaan undang-undang jalan raya", "D) Pengurus pasport"],
+                correct: 0,
+                huraian: "UNESCO ialah singkatan bagi United Nations Educational, Scientific and Cultural Organization yang mempromosikan keamanan menerusi pendidikan, sains, dan kebudayaan."
+            },
+            {
+                id: 63,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "63. Apakah maksud STEM dalam pendidikan?",
+                options: ["A) Sains, Teknologi, Kejuruteraan dan Matematik", "B) Sejarah, Tatabahasa, Ekonomi dan Muzik", "C) Sukan, Teknologi, Etika dan Media", "D) Sains, Tarian, Ekologi dan Muzik"],
+                correct: 0,
+                huraian: "STEM merujuk kepada bidang Sains (Science), Teknologi (Technology), Kejuruteraan (Engineering), dan Matematik (Mathematics)."
+            },
+            {
+                id: 64,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "64. Apakah yang dimaksudkan dengan pengesahan dua faktor (2FA)?",
+                options: ["A) Menggunakan dua nama pengguna yang sama", "B) Menggunakan langkah pengesahan tambahan selain kata laluan", "C) Menukar kata laluan setiap jam", "D) Berkongsi akaun dengan dua orang"],
+                correct: 1,
+                huraian: "2FA (Two-Factor Authentication) menambah lapisan keselamatan dengan memerlukan dua bentuk pengesahan berbeza (contoh: kata laluan + kod OTP SMS)."
+            },
+            {
+                id: 65,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "65. Apakah istilah bagi rekod aktiviti atau maklumat yang ditinggalkan seseorang ketika menggunakan perkhidmatan digital?",
+                options: ["A) Jejak digital", "B) Alamat IP", "C) Fail sementara", "D) Sandaran awan"],
+                correct: 0,
+                huraian: "Jejak digital (digital footprint) ialah rekod data, sejarah carian, muat naik, dan aktiviti yang ditinggalkan penguna semasa melayari Internet."
+            },
+            {
+                id: 66,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "66. Apakah amalan terbaik ketika mencipta kata laluan untuk akaun penting?",
+                options: ["A) Menggunakan 123456 untuk semua akaun", "B) Menggunakan kata laluan yang kukuh dan berbeza bagi setiap akaun penting", "C) Berkongsi kata laluan dengan rakan", "D) Menulis kata laluan di ruangan komen awam"],
+                correct: 1,
+                huraian: "Kata laluan yang kukuh (gabungan huruf besar, kecil, nombor, simbol) dan berbeza elak pencerobohan keselamatan siber merentas pelbagai akaun."
+            },
+            {
+                id: 67,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "67. Apakah maksud kecerdasan buatan (AI) secara umum?",
+                options: ["A) Semua peralatan yang menggunakan bateri", "B) Teknologi yang membolehkan sistem komputer melaksanakan tugas yang biasanya memerlukan kebolehan seperti pembelajaran atau penaakulan", "C) Mesin yang sentiasa memberikan jawapan betul", "D) Internet tanpa komputer"],
+                correct: 1,
+                huraian: "Kecerdasan Buatan (Artificial Intelligence / AI) ialah simulasi kecerdasan manusia dalam mesin yang diprogramkan untuk berfikir, belajar, dan menyelesaikan masalah."
+            },
+            {
+                id: 68,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "68. Apakah maksud sumber tenaga boleh baharu?",
+                options: ["A) Sumber tenaga yang boleh diperbaharui secara semula jadi", "B) Sumber tenaga yang hanya terdapat dalam petroleum", "C) Sumber tenaga yang tidak boleh digunakan semula dalam apa jua keadaan", "D) Sumber tenaga yang hanya dihasilkan daripada arang batu"],
+                correct: 0,
+                huraian: "Tenaga boleh baharu merujuk kepada sumber tenaga semula jadi yang berterusan dan tidak akan habis seperti angin, air, dan cahaya matahari."
+            },
+            {
+                id: 69,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "69. Yang manakah contoh sumber tenaga boleh baharu?",
+                options: ["A) Arang batu", "B) Petroleum", "C) Cahaya matahari", "D) Gas asli"],
+                correct: 2,
+                huraian: "Cahaya matahari (tenaga solar) sentiasa ada dan mampan. Arang batu, petroleum, dan gas asli ialah bahan api fosil yang tidak boleh baharu."
+            },
+            {
+                id: 70,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "70. Apakah fungsi lapisan ozon di stratosfera?",
+                options: ["A) Menghasilkan semua oksigen di Bumi", "B) Menyerap sebahagian besar sinaran ultraungu berbahaya daripada Matahari", "C) Menghentikan putaran Bumi", "D) Menyebabkan pasang surut laut"],
+                correct: 1,
+                huraian: "Lapisan ozon melindungi hidupan di Bumi dengan menyerap dan menapis sinaran ultraungu (UV-B) berbahaya daripada cahaya matahari."
+            },
+            {
+                id: 71,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "71. Apakah yang terutamanya menyebabkan pasang surut laut?",
+                options: ["A) Tarikan graviti Bulan dan Matahari", "B) Tiupan angin sahaja", "C) Gempa bumi setiap hari", "D) Perubahan warna air laut"],
+                correct: 0,
+                huraian: "Fenomena pasang surut air laut disebabkan terutamanya oleh daya tarikan graviti Bulan dan Matahari ke atas cecair di permukaan Bumi."
+            },
+            {
+                id: 72,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "72. Mengapakah panjang bayang-bayang berubah sepanjang hari?",
+                options: ["A) Saiz objek sentiasa berubah", "B) Kedudukan Matahari yang kelihatan berubah di langit", "C) Bumi berhenti berputar", "D) Cahaya Matahari menjadi pepejal"],
+                correct: 1,
+                huraian: "Perubahan kedudukan relatif matahari akibat putaran Bumi pada paksinya menyebabkan sudut cahaya matahari mengenai objek berubah sepanjang hari."
+            },
+            {
+                id: 73,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "73. Apakah fungsi utama sel darah merah?",
+                options: ["A) Mengangkut oksigen dengan bantuan hemoglobin", "B) Menghasilkan hempedu", "C) Mencerna makanan di dalam perut", "D) Menghasilkan insulin"],
+                correct: 0,
+                huraian: "Sel darah merah mengandungi hemoglobin yang mengikat oksigen dari paru-paru dan membawanya ke seluruh tisu serta organ badan."
+            },
+            {
+                id: 74,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "74. Apakah fungsi utama vaksin dalam bidang perubatan?",
+                options: ["A) Menyembuhkan semua penyakit serta-merta", "B) Merangsang sistem imun supaya mengenali patogen tertentu", "C) Menggantikan keperluan pemakanan seimbang", "D) Menghapuskan keperluan menjaga kebersihan"],
+                correct: 1,
+                huraian: "Vaksin melatih dan merangsang sistem imun antibodi badan untuk mengenali dan memusnahkan kuman/virus tertentu sekiranya dijangkiti kelak."
+            },
+            {
+                id: 75,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "75. Apakah unit SI bagi daya?",
+                options: ["A) Joule", "B) Watt", "C) Newton", "D) Pascal"],
+                correct: 2,
+                huraian: "Unit SI untuk mengukur daya (force) ialah Newton (N), dinamakan sempena saintis Sir Isaac Newton."
+            },
+            {
+                id: 76,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "76. Apakah unit SI bagi arus elektrik?",
+                options: ["A) Ampere", "B) Volt", "C) Ohm", "D) Watt"],
+                correct: 0,
+                huraian: "Unit SI bagi julat arus elektrik ialah Ampere (A)."
+            },
+            {
+                id: 77,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "77. Apakah fungsi fius dalam litar elektrik?",
+                options: ["A) Menyimpan semua tenaga elektrik", "B) Memutuskan litar apabila arus berlebihan mengikut kadaran fius", "C) Menambah panjang wayar", "D) Menukar arus elektrik menjadi air"],
+                correct: 1,
+                huraian: "Fius mengandungi dawai halus yang akan melebur dan meputuskan litar keselamatan apabila aliran arus elektrik melebihi had selamat."
+            },
+            {
+                id: 78,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "78. Apakah yang dimaksudkan dengan biodiversiti?",
+                options: ["A) Kepelbagaian hidupan dalam sesuatu kawasan atau di Bumi", "B) Bilangan kenderaan di bandar", "C) Jumlah hujan dalam sehari", "D) Jenis batuan sahaja"],
+                correct: 0,
+                huraian: "Biodiversiti (biokepelbagaian) merujuk kepada variasi dan kepelbagaian organisma hidup daripada pelbagai ekosistem di Bumi."
+            },
+            {
+                id: 79,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "79. Apakah tujuan utama kawasan perlindungan hidupan liar?",
+                options: ["A) Menggalakkan pemburuan tanpa had", "B) Melindungi habitat dan spesies hidupan liar", "C) Menggantikan semua hutan dengan bangunan", "D) Menghapuskan semua pemangsa"],
+                correct: 1,
+                huraian: "Kawasan perlindungan diwujudkan bagi memelihara flora dan fauna yang terancam daripada ancaman pemburuan haram dan pemusnahan habitat."
+            },
+            {
+                id: 80,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "80. Apakah maksud ekonomi kitaran?",
+                options: ["A) Menghasilkan barang untuk terus dibuang", "B) Mengekalkan bahan dan produk dalam penggunaan selama mungkin serta mengurangkan sisa", "C) Menggunakan sumber sekali sahaja", "D) Menghapuskan aktiviti pembaikan"],
+                correct: 1,
+                huraian: "Ekonomi kitaran (circular economy) berfokuskan konsep guna semula, pembaikan, pemulihan, dan kitar semula bagi meminimumkan pembaziran sisa."
+            },
+            {
+                id: 81,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "81. Apakah fungsi kawasan tadahan air?",
+                options: ["A) Menyumbang kepada pengumpulan dan pembekalan sumber air", "B) Menjadi tapak pelupusan sisa toksik", "C) Menghalang semua hujan", "D) Menghasilkan bahan api fosil"],
+                correct: 0,
+                huraian: "Kawasan tadahan air (kebanyakannya hutan simpan tinggi) berfungsi mengumpul air hujan dan mengalirkannya secara semula jadi ke sungai serta empangan."
+            },
+            {
+                id: 82,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "82. Apakah maksud penggunaan air secara lestari?",
+                options: ["A) Membiarkan paip terbuka sepanjang hari", "B) Menggunakan air secara cekap supaya bekalan terpelihara untuk masa depan", "C) Membuang bahan kimia ke sungai", "D) Menggunakan air bersih tanpa had"],
+                correct: 1,
+                huraian: "Penggunaan air lestari bermaksud penggunaan bersih yang berhemah dan cermat bagi memastikan keterjaminan bekalan air generasi akan datang."
+            },
+            {
+                id: 83,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "83. Apakah tujuan utama pemuliharaan hutan bakau?",
+                options: ["A) Menambah hakisan pantai", "B) Melindungi habitat, menyokong biodiversiti dan membantu mengurangkan hakisan pantai", "C) Menghapuskan habitat hidupan akuatik", "D) Menukar air laut menjadi air tawar secara langsung"],
+                correct: 1,
+                huraian: "Akar pokok bakau dapat menahan gelombang ombak untuk mencegah hakisan pantai serta menjadi pusat pembiakan pelbagai hidupan laut."
+            },
+            {
+                id: 84,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "84. Apakah yang dimaksudkan dengan sumber primer dalam kajian sejarah?",
+                options: ["A) Sumber asal atau rekod langsung yang berkaitan dengan perkara yang dikaji", "B) Buku ringkasan moden sahaja", "C) Pendapat tanpa bukti", "D) Hantaran media sosial tanpa sumber yang jelas"],
+                correct: 0,
+                huraian: "Sumber primer ialah bahan/dokumen mentah asli yang belum diolah seperti artifak, diari, warta rasmi, dan rekod peribadi sezaman."
+            },
+            {
+                id: 85,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "85. Mengapakah artifak arkeologi penting dalam kajian sejarah?",
+                options: ["A) Sentiasa memberikan jawapan lengkap tanpa tafsiran", "B) Membantu penyelidik memahami kehidupan masyarakat lampau melalui bukti material", "C) Hanya digunakan sebagai hiasan", "D) Membuktikan semua cerita lisan benar"],
+                correct: 1,
+                huraian: "Artifak arkeologi memberikan bukti konkrit fizikal tentang tamadun, budaya, teknologi, dan sosioekonomi masyarakat silam."
+            },
+            {
+                id: 86,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "86. Apakah yang dimaksudkan dengan warisan budaya tidak ketara?",
+                options: ["A) Bangunan sahaja", "B) Amalan, pengetahuan, kemahiran dan tradisi yang diwariskan antara generasi", "C) Barangan plastik sekali guna", "D) Semua dokumen kewangan moden"],
+                correct: 1,
+                huraian: "Warisan budaya tidak ketara (intangible cultural heritage) merangkumi tradisi lisan, tarian, adat resam, dan kemahiran kraf tradisional."
+            },
+            {
+                id: 87,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "87. Apakah tujuan utama Konvensyen mengenai Hak Kanak-kanak?",
+                options: ["A) Menetapkan prinsip dan hak khusus untuk kanak-kanak", "B) Menetapkan harga semua alat permainan", "C) Menentukan keputusan peperiksaan sekolah", "D) Mengawal semua sukan antarabangsa"],
+                correct: 0,
+                huraian: "Konvensyen Hak Kanak-Kanak (CRC) oleh PBB menetapkan piawaian antarabangsa bagi hak kelangsungan hidup, perlindungan, dan perkembangan kanak-kanak."
+            },
+            {
+                id: 88,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "88. Apakah peranan utama ASEAN?",
+                options: ["A) Menjadi kerajaan tunggal bagi semua negara anggota", "B) Menggalakkan kerjasama serantau dalam pelbagai bidang", "C) Menggantikan semua perlembagaan negara anggota", "D) Mengeluarkan satu mata wang wajib untuk semua negara anggota"],
+                correct: 1,
+                huraian: "ASEAN menggalakkan kerjasama ekonomi, sosial, kebudayaan, dan kestabilan politik-keselamatan serantau dalam kalangan negara Asia Tenggara."
+            },
+            {
+                id: 89,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "89. Setakat ini, berapakah jumlah negara anggota ASEAN selepas kemasukan Timor-Leste?",
+                options: ["A) 9 negara", "B) 10 negara", "C) 11 negara", "D) 12 negara"],
+                correct: 2,
+                huraian: "Sertanya Timor-Leste menjadikan jumlah rasmi negara anggota ASEAN bertambah kepada 11 negara."
+            },
+            {
+                id: 90,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "90. Apakah fungsi utama Pertubuhan Buruh Antarabangsa (ILO)?",
+                options: ["A) Menggalakkan keadilan sosial dan hak di tempat kerja", "B) Mengurus pemeliharaan warisan dunia sahaja", "C) Mengawal semua bank pusat", "D) Menentukan sempadan setiap negara"],
+                correct: 0,
+                huraian: "ILO (International Labour Organization) menetapkan piawaian buruh antarabangsa serta mempromosikan pekerjaan wajar dan kebajikan pekerja."
+            },
+            {
+                id: 91,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "91. Apakah tujuan utama Mahkamah Keadilan Antarabangsa (ICJ)?",
+                options: ["A) Mengadili semua kes jenayah tempatan", "B) Menyelesaikan pertikaian undang-undang antara negara dan memberikan pendapat nasihat", "C) Mengurus mata wang dunia", "D) Menentukan keputusan pertandingan sukan"],
+                correct: 1,
+                huraian: "ICJ yang berpusat di The Hague, Belanda bertindak menyelesaikan pertikaian perundangan antarabangsa yang dikemukakan oleh negara-negara anggota."
+            },
+            {
+                id: 92,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "92. Apakah fungsi Pertubuhan Harta Intelek Sedunia (WIPO)?",
+                options: ["A) Menggalakkan perlindungan harta intelek melalui kerjasama antarabangsa", "B) Menyelaras bantuan banjir di setiap daerah", "C) Mengurus semua pasukan bola sepak", "D) Mengeluarkan ramalan cuaca"],
+                correct: 0,
+                huraian: "WIPO menggalakkan perlindungan hak cipta, paten, dan cap dagangan secara global untuk membolehkan pencipta dilindungi karya inovatif mereka."
+            },
+            {
+                id: 93,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "93. Apakah maksud inflasi dalam ekonomi?",
+                options: ["A) Penurunan berterusan paras harga umum", "B) Peningkatan berterusan paras harga umum barangan dan perkhidmatan", "C) Peningkatan jumlah penduduk sahaja", "D) Penurunan kadar celik huruf"],
+                correct: 1,
+                huraian: "Inflasi merujuk kepada kenaikan berterusan dalam paras harga purata barang dan perkhidmatan dalam sesebuah ekonomi."
+            },
+            {
+                id: 94,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "94. Jika inflasi meningkat sedangkan pendapatan seseorang tidak berubah, apakah yang lazimnya berlaku kepada kuasa beli wangnya?",
+                options: ["A) Kuasa beli meningkat", "B) Kuasa beli menurun", "C) Kuasa beli pasti tidak berubah", "D) Wang bertukar menjadi mata wang asing"],
+                correct: 1,
+                huraian: "Kenaikan harga barang (inflasi) menyebabkan jumlah barang yang dapat dibeli dengan jumlah wang yang sama menjadi berkurangan (kuasa beli merosot)."
+            },
+            {
+                id: 95,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "95. Apakah maksud literasi kewangan?",
+                options: ["A) Keupayaan memahami dan mengurus wang, belanjawan, simpanan serta risiko kewangan", "B) Kebolehan membaca peta sahaja", "C) Kebolehan menghafal nombor akaun orang lain", "D) Kebolehan membeli barang tanpa perancangan"],
+                correct: 0,
+                huraian: "Literasi kewangan merangkumi kefahaman terhadap kemahiran pengurusan wang, perancangan kewangan peribadi, pelaburan, dan simpanan."
+            },
+            {
+                id: 96,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "96. Apakah nama tasik semula jadi terbesar di Malaysia yang terletak di Pahang?",
+                options: ["A) Tasik Bera", "B) Tasik Chini", "C) Tasik Kenyir", "D) Tasik Pedu"],
+                correct: 0,
+                huraian: "Tasik Bera di Pahang merupakan tasik semula jadi terbesar di Malaysia dan merupakan tapak tanah lembap RAMSAR pertama di Malaysia."
+            },
+            {
+                id: 97,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "97. Apakah nama tasik buatan manusia terbesar di Malaysia yang terletak di Terengganu?",
+                options: ["A) Tasik Bera", "B) Tasik Chini", "C) Tasik Kenyir", "D) Tasik Banding"],
+                correct: 2,
+                huraian: "Tasik Kenyir terletak di Terengganu dan merupakan tasik buatan manusia yang paling besar di Malaysia dan Asia Tenggara."
+            },
+            {
+                id: 98,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "98. Di bandar manakah terletaknya ibu pejabat ASEAN?",
+                options: ["A) Bangkok, Thailand", "B) Jakarta, Indonesia", "C) Kuala Lumpur, Malaysia", "D) Manila, Filipina"],
+                correct: 1,
+                huraian: "Sekretariat dan Ibu Pejabat Pertubuhan ASEAN bertempat di Jakarta, Indonesia."
+            },
+            {
+                id: 99,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "99. Apakah fungsi utama Jabatan Meteorologi Malaysia (METMalaysia)?",
+                options: ["A) Mengurus bekalan elektrik", "B) Menyediakan maklumat cuaca, amaran cuaca dan maklumat berkaitan gempa bumi serta tsunami", "C) Mengawal harga barang", "D) Mengurus pendaftaran syarikat"],
+                correct: 1,
+                huraian: "METMalaysia dipertanggungjawabkan memberi amaran awal cuaca buruk, ribut, bencana alam sepertimana seismologi, gempa bumi, dan tsunami."
+            },
+            {
+                id: 100,
+                section: 'pa',
+                sectionName: 'BAHAGIAN PENGETAHUAN AM',
+                q: "100. Apakah yang dimaksudkan dengan gerhana Matahari?",
+                options: ["A) Bulan berada di antara Matahari dengan Bumi sehingga menghalang sebahagian atau seluruh cahaya Matahari daripada dilihat dari kawasan tertentu di Bumi", "B) Bumi berada di antara Matahari dengan Bulan", "C) Matahari berada di antara Bumi dengan Bulan", "D) Bulan tidak menerima cahaya daripada Matahari sepanjang tahun"],
+                correct: 0,
+                huraian: "Gerhana matahari berlaku apabila kedudukan Bulan selari berada di antara Bumi dan Matahari, menghalang pancaran sinar cahaya matahari ke Bumi."
+            }
+        ];
+
+        let currentQuestionIndex = 0; // 0 to 99
+        let userAnswers = new Array(100).fill(null); // Stores selected option index
+        let activeCategoryView = 'iq'; // 'iq' or 'pa'
+        let currentFilterReview = 'all';
+
+        function startQuiz() {
+            document.getElementById('page-welcome').classList.add('hidden');
+            document.getElementById('page-quiz').classList.remove('hidden');
+            document.getElementById('quiz-header-status').classList.remove('hidden');
+            
+            currentQuestionIndex = 0;
+            userAnswers.fill(null);
+            activeCategoryView = 'iq';
+            
+            renderQuestion();
+            renderNavigationGrid();
+            updateProgressBar();
+        }
+
+        function switchCategory(cat) {
+            activeCategoryView = cat;
+            const tabIQ = document.getElementById('tab-iq');
+            const tabPA = document.getElementById('tab-pa');
+
+            if(cat === 'iq') {
+                tabIQ.className = "flex-1 md:flex-initial px-4 py-2 rounded-md font-semibold text-xs sm:text-sm transition flex items-center justify-center space-x-2 bg-blue-900 text-white shadow";
+                tabPA.className = "flex-1 md:flex-initial px-4 py-2 rounded-md font-semibold text-xs sm:text-sm transition flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900";
+                document.getElementById('nav-section-title').textContent = "IQ (1-50)";
+                // Jump to first question of IQ if currently in PA
+                if(currentQuestionIndex >= 50) {
+                    currentQuestionIndex = 0;
+                    renderQuestion();
+                }
+            } else {
+                tabPA.className = "flex-1 md:flex-initial px-4 py-2 rounded-md font-semibold text-xs sm:text-sm transition flex items-center justify-center space-x-2 bg-blue-900 text-white shadow";
+                tabIQ.className = "flex-1 md:flex-initial px-4 py-2 rounded-md font-semibold text-xs sm:text-sm transition flex items-center justify-center space-x-2 text-slate-600 hover:text-slate-900";
+                document.getElementById('nav-section-title').textContent = "Pengetahuan Am (1-50)";
+                // Jump to first question of PA if currently in IQ
+                if(currentQuestionIndex < 50) {
+                    currentQuestionIndex = 50;
+                    renderQuestion();
+                }
+            }
+            renderNavigationGrid();
+        }
+
+        function renderQuestion() {
+            const item = questionsData[currentQuestionIndex];
+            
+            // Sync active section tab UI
+            if (currentQuestionIndex < 50 && activeCategoryView !== 'iq') {
+                switchCategory('iq');
+            } else if (currentQuestionIndex >= 50 && activeCategoryView !== 'pa') {
+                switchCategory('pa');
+            }
+
+            // Update Labels
+            document.getElementById('current-section-badge').textContent = item.sectionName;
+            document.getElementById('question-category-label').textContent = item.sectionName;
+            document.getElementById('current-q-num').textContent = currentQuestionIndex + 1;
+
+            // Update Question Text (Handling line breaks formatting if any)
+            document.getElementById('question-text').innerHTML = item.q.replace(/\n/g, '<br>');
+
+            // Render Options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            const userSelected = userAnswers[currentQuestionIndex];
+            const hasAnswered = (userSelected !== null);
+            const feedbackBox = document.getElementById('instant-feedback');
+
+            if (hasAnswered) {
+                feedbackBox.classList.remove('hidden');
+                if (userSelected === item.correct) {
+                    feedbackBox.className = "mb-4 p-4 rounded-xl text-xs sm:text-sm font-medium bg-emerald-50 text-emerald-900 border border-emerald-300 shadow-sm";
+                    feedbackBox.innerHTML = `
+                        <div class="flex items-center space-x-2 font-bold text-emerald-700 mb-1">
+                            <i class="fas fa-circle-check text-base"></i>
+                            <span>Syabas! Jawapan anda TEPAT.</span>
+                        </div>
+                        <div class="text-slate-700 leading-relaxed text-xs sm:text-sm pt-1 border-t border-emerald-200/60 mt-1">
+                            <span class="font-bold text-emerald-800">Huraian:</span> ${item.huraian}
+                        </div>
+                    `;
+                } else {
+                    feedbackBox.className = "mb-4 p-4 rounded-xl text-xs sm:text-sm font-medium bg-rose-50 text-rose-900 border border-rose-300 shadow-sm";
+                    feedbackBox.innerHTML = `
+                        <div class="flex items-center space-x-2 font-bold text-rose-700 mb-1">
+                            <i class="fas fa-circle-xmark text-base"></i>
+                            <span>Jawapan kurang tepat. Jawapan betul: <strong>${item.options[item.correct]}</strong></span>
+                        </div>
+                        <div class="text-slate-700 leading-relaxed text-xs sm:text-sm pt-1 border-t border-rose-200/60 mt-1">
+                            <span class="font-bold text-rose-800">Huraian:</span> ${item.huraian}
+                        </div>
+                    `;
+                }
+            } else {
+                feedbackBox.classList.add('hidden');
+            }
+
+            item.options.forEach((optText, optIdx) => {
+                const optBtn = document.createElement('button');
+                optBtn.type = 'button';
+                optBtn.onclick = () => selectOption(optIdx);
+
+                let baseStyles = "w-full text-left p-4 rounded-xl border font-medium text-sm transition flex items-center justify-between group cursor-pointer ";
+                let badgeContent = '';
+
+                if (hasAnswered) {
+                    if (optIdx === item.correct) {
+                        // Highlight correct answer in green
+                        baseStyles += "bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold ring-2 ring-emerald-400";
+                        badgeContent = '<div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs"><i class="fas fa-check"></i></div>';
+                    } else if (optIdx === userSelected) {
+                        // Highlight wrong selection in red
+                        baseStyles += "bg-rose-50 border-rose-500 text-rose-950 font-semibold ring-2 ring-rose-400";
+                        badgeContent = '<div class="w-6 h-6 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs"><i class="fas fa-xmark"></i></div>';
+                    } else {
+                        // Other options dimmed
+                        baseStyles += "bg-slate-50 border-slate-200 text-slate-400 opacity-60";
+                        badgeContent = '<div class="w-5 h-5 rounded-full border border-slate-300"></div>';
+                    }
+                } else {
+                    baseStyles += "bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300";
+                    badgeContent = '<div class="w-5 h-5 rounded-full border border-slate-300 group-hover:border-slate-400"></div>';
+                }
+
+                optBtn.className = baseStyles;
+
+                optBtn.innerHTML = `
+                    <span class="flex-1 pr-3">${optText}</span>
+                    ${badgeContent}
+                `;
+
+                optionsContainer.appendChild(optBtn);
+            });
+
+            // Update Previous/Next Button States
+            document.getElementById('btn-prev').disabled = (currentQuestionIndex === 0);
+            
+            const nextBtn = document.getElementById('btn-next');
+            if (currentQuestionIndex === questionsData.length - 1) {
+                nextBtn.innerHTML = `<span>Semak Keputusan</span> <i class="fas fa-flag-checkered"></i>`;
+                nextBtn.className = "px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition flex items-center space-x-2 shadow-md";
+            } else {
+                nextBtn.innerHTML = `<span>Seterusnya</span> <i class="fas fa-arrow-right"></i>`;
+                nextBtn.className = "px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-sm transition flex items-center space-x-2 shadow-md";
+            }
+
+            renderNavigationGrid();
+        }
+
+        function selectOption(optIndex) {
+            userAnswers[currentQuestionIndex] = optIndex;
+            renderQuestion();
+            updateProgressBar();
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            } else {
+                confirmSubmitQuiz();
+            }
+        }
+
+        function jumpToQuestion(idx) {
+            currentQuestionIndex = idx;
+            renderQuestion();
+        }
+
+        function updateProgressBar() {
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            const percentage = (answeredCount / questionsData.length) * 100;
+            
+            document.getElementById('progress-bar-fill').style.width = `${percentage}%`;
+            document.getElementById('progress-text').textContent = `${answeredCount} / ${questionsData.length}`;
+        }
+
+        function renderNavigationGrid() {
+            const gridContainer = document.getElementById('questions-grid');
+            gridContainer.innerHTML = '';
+
+            const startIdx = activeCategoryView === 'iq' ? 0 : 50;
+            const endIdx = activeCategoryView === 'iq' ? 50 : 100;
+
+            for (let i = startIdx; i < endIdx; i++) {
+                const isCurrent = (i === currentQuestionIndex);
+                const isAnswered = (userAnswers[i] !== null);
+                
+                const gridBtn = document.createElement('button');
+                gridBtn.type = 'button';
+                gridBtn.onclick = () => jumpToQuestion(i);
+
+                let btnClass = "h-9 w-full rounded-lg font-bold text-xs transition flex items-center justify-center border ";
+                
+                if (isCurrent) {
+                    btnClass += "bg-indigo-600 text-white border-indigo-700 ring-2 ring-indigo-300 font-extrabold shadow";
+                } else if (isAnswered) {
+                    btnClass += "bg-emerald-500 text-white border-emerald-600";
+                } else {
+                    btnClass += "bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200";
+                }
+
+                gridBtn.className = btnClass;
+                gridBtn.textContent = i + 1;
+
+                gridContainer.appendChild(gridBtn);
+            }
+        }
+
+        function confirmExit() {
+            if (confirm("Adakah anda pasti mahu menamatkan ujian ini lebih awal? Keputusan semasa anda akan dikira.")) {
+                calculateAndShowResults();
+            }
+        }
+
+        function confirmSubmitQuiz() {
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            const unanswered = questionsData.length - answeredCount;
+
+            let msg = `Anda telah menjawab ${answeredCount} daripada 100 soalan.`;
+            if (unanswered > 0) {
+                msg += `\nMasih terdapat ${unanswered} soalan yang belum dijawab. Adakah anda pasti mahu menghantar sekarang?`;
+            } else {
+                msg += `\nAdakah anda pasti mahu menghantar jawapan?`;
+            }
+
+            if (confirm(msg)) {
+                calculateAndShowResults();
+            }
+        }
+
+        function calculateAndShowResults() {
+            let scoreIQ = 0;
+            let scorePA = 0;
+
+            questionsData.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (userAns !== null && userAns === q.correct) {
+                    if (q.section === 'iq') {
+                        scoreIQ++;
+                    } else {
+                        scorePA++;
+                    }
+                }
+            });
+
+            const totalScore = scoreIQ + scorePA;
+            const totalPercent = Math.round((totalScore / 100) * 100);
+            const percentIQ = Math.round((scoreIQ / 50) * 100);
+            const percentPA = Math.round((scorePA / 50) * 100);
+
+            // Populate UI Score Values
+            document.getElementById('res-score-total').textContent = `${totalScore} / 100`;
+            document.getElementById('res-percentage').textContent = `${totalPercent}% MARRAH`;
+            
+            document.getElementById('res-score-iq').textContent = `${scoreIQ} / 50`;
+            document.getElementById('res-percent-iq').textContent = `${percentIQ}% ketepatan`;
+
+            document.getElementById('res-score-pa').textContent = `${scorePA} / 50`;
+            document.getElementById('res-percent-pa').textContent = `${percentPA}% ketepatan`;
+
+            // Evaluate Performance
+            const evalCard = document.getElementById('eval-card');
+            const evalIcon = document.getElementById('eval-icon');
+            const evalTitle = document.getElementById('eval-title');
+            const evalDesc = document.getElementById('eval-desc');
+
+            if (totalScore >= 80) {
+                evalCard.className = "p-4 rounded-xl border mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 bg-emerald-50 border-emerald-200 text-emerald-900";
+                evalIcon.innerHTML = `<i class="fas fa-circle-check text-emerald-600"></i>`;
+                evalTitle.textContent = "Tahap Prestasi: Cemerlang / Layak Syor";
+                evalDesc.textContent = "Tahniah! Anda mencapai prestasi cemerlang dalam persediaan Ujian PKSK. Kekalkan tahap kecekapan ini.";
+            } else if (totalScore >= 50) {
+                evalCard.className = "p-4 rounded-xl border mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 bg-amber-50 border-amber-200 text-amber-900";
+                evalIcon.innerHTML = `<i class="fas fa-triangle-exclamation text-amber-600"></i>`;
+                evalTitle.textContent = "Tahap Prestasi: Sederhana / Memuaskan";
+                evalDesc.textContent = "Keputusan baik, namun anda dicadangkan membuat semakan semula terutamanya bahagian soalan yang salah untuk skor lebih tinggi.";
+            } else {
+                evalCard.className = "p-4 rounded-xl border mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 bg-rose-50 border-rose-200 text-rose-900";
+                evalIcon.innerHTML = `<i class="fas fa-circle-xmark text-rose-600"></i>`;
+                evalTitle.textContent = "Tahap Prestasi: Perlu Latihan Lanjutan";
+                evalDesc.textContent = "Jangan putus asa! Semak jawapan betul di bawah dan cuba lagi latihan ini untuk membiasakan format soalan PKSK.";
+            }
+
+            // Render Answer Review List
+            renderReviewList();
+
+            // Switch Screen
+            document.getElementById('page-quiz').classList.add('hidden');
+            document.getElementById('quiz-header-status').classList.add('hidden');
+            document.getElementById('page-result').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filterReview(type) {
+            currentFilterReview = type;
+            
+            const btnAll = document.getElementById('filter-all');
+            const btnWrong = document.getElementById('filter-wrong');
+
+            if (type === 'all') {
+                btnAll.className = "px-3 py-1 bg-slate-800 text-white text-xs font-bold rounded-lg";
+                btnWrong.className = "px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-200";
+            } else {
+                btnWrong.className = "px-3 py-1 bg-slate-800 text-white text-xs font-bold rounded-lg";
+                btnAll.className = "px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-200";
+            }
+
+            renderReviewList();
+        }
+
+        function renderReviewList() {
+            const container = document.getElementById('review-container');
+            container.innerHTML = '';
+
+            questionsData.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = (userAns === q.correct);
+
+                if (currentFilterReview === 'wrong' && isCorrect) {
+                    return; // Skip correct answers if filter is 'wrong'
+                }
+
+                const card = document.createElement('div');
+                card.className = `p-4 sm:p-5 rounded-xl border ${isCorrect ? 'bg-emerald-50/40 border-emerald-200' : 'bg-rose-50/40 border-rose-200'}`;
+
+                const userChoiceText = (userAns !== null) ? q.options[userAns] : '<span class="italic text-slate-400">Tiada jawapan dipilih</span>';
+                const correctChoiceText = q.options[q.correct];
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                        <span class="text-xs font-extrabold uppercase px-2 py-0.5 rounded ${q.section === 'iq' ? 'bg-indigo-100 text-indigo-800' : 'bg-emerald-100 text-emerald-800'}">
+                            Soalan ${idx + 1} (${q.sectionName})
+                        </span>
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${isCorrect ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">
+                            ${isCorrect ? '<i class="fas fa-check mr-1"></i>Betul' : '<i class="fas fa-xmark mr-1"></i>Salah'}
+                        </span>
+                    </div>
+                    <p class="font-semibold text-slate-800 text-sm mb-3">${q.q.replace(/\n/g, '<br>')}</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs mb-3">
+                        <div class="p-2.5 rounded-lg ${isCorrect ? 'bg-emerald-100/70 text-emerald-900' : 'bg-rose-100/70 text-rose-900'}">
+                            <span class="block font-bold opacity-75 mb-0.5">Jawapan Anda:</span>
+                            <span>${userChoiceText}</span>
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-emerald-100/70 text-emerald-900">
+                            <span class="block font-bold opacity-75 mb-0.5">Jawapan Tepat:</span>
+                            <span>${correctChoiceText}</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-white/80 rounded-lg border border-slate-200 text-xs text-slate-700">
+                        <span class="font-bold text-indigo-900 flex items-center space-x-1 mb-1">
+                            <i class="fas fa-lightbulb text-amber-500"></i>
+                            <span>Huraian Jawapan:</span>
+                        </span>
+                        <p class="leading-relaxed">${q.huraian}</p>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            if (container.children.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-slate-400 text-sm">
+                        <i class="fas fa-circle-check text-2xl mb-2 text-emerald-500"></i>
+                        <p>Tiada soalan salah! Semua soalan telah dijawab dengan tepat.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function restartQuiz() {
+            document.getElementById('page-result').classList.add('hidden');
+            document.getElementById('page-welcome').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
